@@ -142,8 +142,8 @@ impl<Manager> Matchmaking<Manager> {
     }
 
     /// Requests lobby data.
-    pub fn request_lobby_data(&self, lobby: LobbyId) {
-        unsafe { sys::SteamAPI_ISteamMatchmaking_RequestLobbyData(self.mm, lobby.0); }
+    pub fn request_lobby_data(&self, lobby: LobbyId) -> bool {
+        unsafe { sys::SteamAPI_ISteamMatchmaking_RequestLobbyData(self.mm, lobby.0) as _ }
     }
 
     /// Returns the lobby metadata associated with the specified key from the
