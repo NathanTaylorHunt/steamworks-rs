@@ -753,6 +753,7 @@ pub enum NetConnectionEnd {
     //       E.g.: user intentionally disconnected from the server,
     //             gameplay ended normally, etc
     App(AppNetConnectionEnd),
+    AppGeneric,  // hack
 
     //
     // System codes.  These will be returned by the system when
@@ -901,6 +902,7 @@ impl From<NetConnectionEnd> for i32 {
         match end {
             NetConnectionEnd::Invalid => k_ESteamNetConnectionEnd_Invalid as i32,
             NetConnectionEnd::App(app_net_connection_end) => app_net_connection_end.code(),
+            NetConnectionEnd::AppGeneric => ESteamNetConnectionEnd::k_ESteamNetConnectionEnd_App_Generic as i32,
             NetConnectionEnd::LocalOfflineMode => k_ESteamNetConnectionEnd_Local_OfflineMode as i32,
             NetConnectionEnd::LocalManyRelayConnectivity => {
                 k_ESteamNetConnectionEnd_Local_ManyRelayConnectivity as i32
